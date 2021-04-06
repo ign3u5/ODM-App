@@ -3,14 +3,26 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TotalShowTypeComponent } from './charts/total-show-type/total-show-type.component';
+import { HttpClientModule } from '@angular/common/http';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { TotalRatingsComponent } from './charts/total-ratings/total-ratings.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { FilterRatingComponent } from './charts/filter-rating/filter-rating.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TotalShowTypeComponent,
+    TotalRatingsComponent,
+    NavigationComponent,
+    FilterRatingComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    GoogleChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

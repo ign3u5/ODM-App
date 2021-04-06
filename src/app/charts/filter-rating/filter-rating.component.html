@@ -1,0 +1,7 @@
+<h1>Filter Ratings</h1>
+<dashboard [data]="data" [columns]="columns" style="width: 100%; height: 100%;">
+    <control-wrapper [for]="chart" type="NumberRangeFilter" [options]="controlOptions"></control-wrapper>
+    <google-chart #chart type="Table" style="width: 100%; height: 100%" (select)="displayTopFilmsForRating($event)"></google-chart>
+</dashboard>
+<button (click)="filterFilms()">Filter Films by Rating</button>
+<google-chart type="Table" [data]="filmData" [columns]="filmColumns" [options]="filmOptions" style="width: 100%; height: 100%"></google-chart>

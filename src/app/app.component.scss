@@ -1,0 +1,13 @@
+.container {
+    display: grid;
+    grid-template: 
+    "charts navigation" minmax(50vh, 100%) / 4fr minmax(100px, 1fr);
+
+    .chart-wrapper {
+        grid-area: charts;
+    }
+
+    .navigation-wrapper {
+        grid-area: navigation;
+    }
+}
