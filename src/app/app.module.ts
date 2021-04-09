@@ -10,6 +10,7 @@ import { TotalRatingsComponent } from './charts/total-ratings/total-ratings.comp
 import { NavigationComponent } from './navigation/navigation.component';
 import { FilterRatingComponent } from './charts/filter-rating/filter-rating.component';
 import { YearlyTotalComponent } from './charts/yearly-total/yearly-total.component';
+import { AverageDurationComponent } from './charts/average-duration/average-duration.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { YearlyTotalComponent } from './charts/yearly-total/yearly-total.compone
     NavigationComponent,
     FilterRatingComponent,
     YearlyTotalComponent,
+    AverageDurationComponent,
   ],
   imports: [
     BrowserModule,
