@@ -9,6 +9,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { TotalRatingsComponent } from './charts/total-ratings/total-ratings.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FilterRatingComponent } from './charts/filter-rating/filter-rating.component';
+import { YearlyTotalComponent } from './charts/yearly-total/yearly-total.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FilterRatingComponent } from './charts/filter-rating/filter-rating.comp
     TotalRatingsComponent,
     NavigationComponent,
     FilterRatingComponent,
+    YearlyTotalComponent,
   ],
   imports: [
     BrowserModule,
