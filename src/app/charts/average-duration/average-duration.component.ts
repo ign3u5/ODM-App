@@ -10,30 +10,41 @@ export class AverageDurationComponent   {
   tvShowData: string|number[][];
   movieData: string|number[][];
   columns: string[];
-  options: any;
+  tvShowOptions: any;
+  movieOptions: any;
 
   constructor(private chartData: ChartDataService) { 
     this.columns = [`Description`, `Total`];
-    this.chartData.getChartData(`TotalTvShowsForReleaseYears`).subscribe(
+    this.chartData.getChartDataWhere(`DurationFrequency`, `TV Show`).subscribe(
       d => {
         this.tvShowData = d;
       }
     );
-    this.chartData.getChartData(`TotalMoviesForReleaseYears`).subscribe(
+    this.chartData.getChartDataWhere(`DurationFrequency`, `Movie`).subscribe(
       d => {
         this.movieData = d;
       }
     );
-    this.options = {
+    this.tvShowOptions = {
       colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
       hAxis: {
-        title: `Rating`,
+        title: `Duration (seasons)`,
       },
       vAxis: {
-        title: `Number of movies`,
+        title: `Number of TV Shows`,
       },
       legend: 'none',
-  };
+    };
+    this.movieOptions = {
+        colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+        hAxis: {
+          title: `Duration (mins)`,
+        },
+        vAxis: {
+          title: `Number of Movies`,
+        },
+        legend: 'none',
+    };
 }
 
 }

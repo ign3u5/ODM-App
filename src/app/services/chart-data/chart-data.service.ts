@@ -33,12 +33,12 @@ export class ChartDataService {
     );
   }
 
-  getChartDataWhere(chartName: string): Observable<string|number[][]> {
+  getChartDataWhere(chartName: string, where: string): Observable<string|number[][]> {
     return this.client
     .get(`${this.baseAddress}Chart.php`,
     {
       observe: 'response',
-      params: this.setChartNameParam(chartName),
+      params: this.setChartNameParam(chartName).append('WhereConstraint', where),
     })
     .pipe(
       map((response: any) => {
