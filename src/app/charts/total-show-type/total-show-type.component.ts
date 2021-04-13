@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ChartDataService } from '../../services/chart-data/chart-data.service';
-import { PairedData } from '../../services/models/PairedData';
 
 @Component({
   selector: 'total-show-type',

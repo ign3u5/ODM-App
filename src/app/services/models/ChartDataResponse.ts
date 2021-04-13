@@ -1,4 +1,5 @@
-export interface ChartDataResponse {
-    descriptor: string;
-    value: string;
+export class ChartDataResponse {
+    constructor (responseData: [string, string][]) {
+
+    }
 }

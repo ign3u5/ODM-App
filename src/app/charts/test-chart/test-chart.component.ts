@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartSelectionChangedEvent } from 'angular-google-charts';
 import { ChartDataService } from 'src/app/services/chart-data/chart-data.service';
-import { PieChartOptions } from 'src/app/services/models/pieChartOptions';
 
 @Component({
   selector: 'app-test-chart',
@@ -29,7 +28,7 @@ export class TestChartComponent implements OnInit {
     });
    }
 
-   onNoFilter() {
+   onNoFilter(): void {
       this.showTableData = false;
       this.tableData = null;
       this.chartData.getChartData(`TotalRatings`).subscribe({
@@ -40,7 +39,7 @@ export class TestChartComponent implements OnInit {
       });
    }
 
-  onJustMovies() {
+  onJustMovies(): void {
     this.showType = ShowType.Movie;
     this.showRatingData = false;
     this.chartData.getChartDataWhere(`TotalRatingsByShowType`, `Movie`).subscribe({
@@ -54,7 +53,7 @@ export class TestChartComponent implements OnInit {
     }
   }
 
-  onJustTvShows() {
+  onJustTvShows(): void {
     this.showType = ShowType.TvShow;
     this.showRatingData = false;
     this.chartData.getChartDataWhere(`TotalRatingsByShowType`, `TV Show`).subscribe({
@@ -68,7 +67,7 @@ export class TestChartComponent implements OnInit {
     }
   }
 
-  onSelect(event: ChartSelectionChangedEvent) {
+  onSelect(event: ChartSelectionChangedEvent): void {
     console.log(JSON.stringify(this.ratingData[event.selection[0].row]));
     this.currentFilter = this.ratingData[event.selection[0].row][0].toString();
     switch (this.showType)
@@ -85,9 +84,9 @@ export class TestChartComponent implements OnInit {
     }
   }
 
-  private getAllShows() {
+  private getAllShows(): void {
     this.showTableData = false;
-    this.chartData.getChartDataWhereString(`Test`, this.currentFilter).subscribe({
+    this.chartData.getChartDataWhereString(`ShowByRating`, this.currentFilter).subscribe({
       next: data => {
         this.tableData = data;
         this.showTableData = true;
@@ -95,9 +94,9 @@ export class TestChartComponent implements OnInit {
     });
   }
 
-  private getShowsOfType(showType: string) {
+  private getShowsOfType(showType: string): void {
     this.showTableData = false;
-    this.chartData.getChartDataWhereAndString(`Test2`, this.currentFilter, showType).subscribe({
+    this.chartData.getChartDataWhereAndString(`ShowByRatingAndType`, this.currentFilter, showType).subscribe({
       next: data => {
         this.tableData = data;
         this.showTableData = true;

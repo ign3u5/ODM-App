@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { PairedData } from '../models/PairedData';
 import { ChartDataResponse } from '../models/ChartDataResponse';
 
 @Injectable({
@@ -12,6 +11,22 @@ export class ChartDataService {
   private baseAddress = `http://localhost:8000/`;
 
   constructor(private client: HttpClient) { }
+
+  getChart(chartName: string): Observable<ChartDataResponse> {
+    return this.client
+    .get(`${this.baseAddress}Chart.php`,
+    {
+      observe: 'response',
+      params: this.setChartNameParam(chartName),
+    })
+    .pipe(
+      map((response: any) => {
+        console.log(response.body.message);
+        return new ChartDataResponse(response.body.data);
+      }),
+      catchError(this.handleError),
+    );
+  }
 
   getChartData(chartName: string): Observable<[string|number, string|number][]> {
     return this.client

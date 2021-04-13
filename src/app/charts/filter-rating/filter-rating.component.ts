@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ChartSelectionChangedEvent } from 'angular-google-charts';
 import { Observable } from 'rxjs';
 import { ChartDataService } from 'src/app/services/chart-data/chart-data.service';
-import { PieChartOptions } from 'src/app/services/models/pieChartOptions';
 
 @Component({
   selector: 'app-filter-rating',
