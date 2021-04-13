@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ChartSelectionChangedEvent } from 'angular-google-charts';
 import { Observable } from 'rxjs';
 import { ChartDataService } from 'src/app/services/chart-data/chart-data.service';
+import { PieChartOptions } from 'src/app/services/models/pieChartOptions';
 
 @Component({
   selector: 'app-filter-rating',
@@ -9,49 +10,25 @@ import { ChartDataService } from 'src/app/services/chart-data/chart-data.service
   styleUrls: ['./filter-rating.component.scss']
 })
 export class FilterRatingComponent {
-  data: string|number[][];
-  columns: string[];
-  options: any;
-  controlOptions: any;
-  filmColumns = ["Title", "Rating"];
-  filmOptions: any;
-  filmData: string|number[][];
-  filterRatings: (string|number)[];
+  ratingData: [string|number, string|number][];
 
-  constructor(private chartData: ChartDataService) { 
-    this.columns = [`Description`, `Total`];
-    this.chartData.getChartData(`TotalRatings`).subscribe(
-      val => {
-        this.data = val;
+  tableData: string[];
+
+  constructor(private chartData: ChartDataService) {
+    this.chartData.getChartData(`TotalRatings`).subscribe({
+      next: data => {
+        this.ratingData = data;
       }
-    );
-    this.options = {
-      colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
-      hAxis: {
-        title: `Rating`,
-      },
-      vAxis: {
-        title: `Number of movies`,
-      },
-      legend: 'none',
-    };
-    this.controlOptions = {
-      filterColumnLabel: 'Total'
-    }
-  }
+    });
 
-  displayTopFilmsForRating($selectedRatings: ChartSelectionChangedEvent) {
-    console.log(JSON.stringify($selectedRatings.selection));
-    this.filterRatings = $selectedRatings.selection.map(val => this.data[val.row][0]);
-    console.log(JSON.stringify(this.filterRatings));
-  }
+   }
 
-  filterFilms() {
-    if (this.filterRatings)
-    {
-      this.chartData.getChartDataWhereLimit('TopFilmsForRating', this.filterRatings[0].toString(), "10").subscribe(val => {
-        this.filmData = val;
-      });
-    }
+  onSelect(event: ChartSelectionChangedEvent) {
+    console.log(JSON.stringify(this.ratingData[event.selection[0].row]));
+    this.chartData.getChartDataWhereString(`Test`, this.ratingData[event.selection[0].row][0].toString()).subscribe({
+      next: data => {
+        this.tableData = data;
+      }
+    });
   }
 }

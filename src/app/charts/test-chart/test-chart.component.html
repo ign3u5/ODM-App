@@ -1,0 +1,7 @@
+<p>Test</p>
+<div (click)="onNoFilter()">No Filter</div>
+<div (click)="onJustMovies()">Just Movies</div>
+<div (click)="onJustTvShows()">Just TV Shows</div>
+<google-chart *ngIf="ratingData" type="PieChart" [data]="ratingData" (select)="onSelect($event)" style="width: 100%; height: 500px"></google-chart>
+<data-table *ngIf="tableData" [headers]="['Title']" [data]="tableData"></data-table>
+

@@ -13,7 +13,7 @@ export class ChartDataService {
 
   constructor(private client: HttpClient) { }
 
-  getChartData(chartName: string): Observable<string|number[][]> {
+  getChartData(chartName: string): Observable<[string|number, string|number][]> {
     return this.client
     .get(`${this.baseAddress}Chart.php`,
     {
@@ -33,7 +33,27 @@ export class ChartDataService {
     );
   }
 
-  getChartDataWhere(chartName: string, where: string): Observable<string|number[][]> {
+  getChartDataString(chartName: string): Observable<[string|number, string|number][]> {
+    return this.client
+    .get(`${this.baseAddress}Chart.php`,
+    {
+      observe: 'response',
+      params: this.setChartNameParam(chartName),
+    })
+    .pipe(
+      map((response: any) => {
+        console.log(response.body.message);
+        var chartData = response.body.data;
+        console.log(`${chartName} response data pre format: ${JSON.stringify(chartData)}`);
+        var response = chartData;
+        console.log(`${chartName} response data: ${JSON.stringify(response)}`);
+        return response;
+      }),
+      catchError(this.handleError),
+    );
+  }
+
+  getChartDataWhere(chartName: string, where: string): Observable<[string|number, string|number][]> {
     return this.client
     .get(`${this.baseAddress}Chart.php`,
     {
@@ -53,7 +73,47 @@ export class ChartDataService {
     );
   }
 
-  getChartDataLimit(chartName: string): Observable<string|number[][]> {
+  getChartDataWhereString(chartName: string, where: string): Observable<string[]> {
+    return this.client
+    .get(`${this.baseAddress}Chart.php`,
+    {
+      observe: 'response',
+      params: this.setChartNameParam(chartName).append('WhereConstraint', where),
+    })
+    .pipe(
+      map((response: any) => {
+        console.log(response.body.message);
+        var chartData = response.body.data;
+        console.log(`${chartName} response data pre format: ${JSON.stringify(chartData)}`);
+        var response = chartData;
+        console.log(`${chartName} response data: ${JSON.stringify(response)}`);
+        return response;
+      }),
+      catchError(this.handleError),
+    );
+  }
+
+  getChartDataWhereAndString(chartName: string, where: string, and: string): Observable<string[]> {
+    return this.client
+    .get(`${this.baseAddress}Chart.php`,
+    {
+      observe: 'response',
+      params: this.setChartNameParam(chartName).append('WhereConstraint', where).append('AndConstraint', and),
+    })
+    .pipe(
+      map((response: any) => {
+        console.log(response.body.message);
+        var chartData = response.body.data;
+        console.log(`${chartName} response data pre format: ${JSON.stringify(chartData)}`);
+        var response = chartData;
+        console.log(`${chartName} response data: ${JSON.stringify(response)}`);
+        return response;
+      }),
+      catchError(this.handleError),
+    );
+  }
+
+  getChartDataLimit(chartName: string): Observable<[string|number, string|number][]> {
     return this.client
     .get(`${this.baseAddress}Chart.php`,
     {
@@ -73,7 +133,7 @@ export class ChartDataService {
     );
   }
 
-  getChartDataWhereLimit(chartName: string, where: string, limit: string): Observable<string|number[][]> {
+  getChartDataWhereLimit(chartName: string, where: string, limit: string): Observable<[string|number, string|number][]> {
     return this.client
     .get(`${this.baseAddress}Chart.php`,
     {

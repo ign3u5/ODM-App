@@ -9,7 +9,7 @@ import { PairedData } from '../../services/models/PairedData';
   styleUrls: ['./total-show-type.component.scss']
 })
 export class TotalShowTypeComponent {
-  data: Promise<string|number[][]>;
+  data: Promise<[string|number, string|number][]>;
   columns: string[];
 
   constructor(private chartData: ChartDataService) { 

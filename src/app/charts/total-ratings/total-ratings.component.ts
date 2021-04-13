@@ -7,7 +7,7 @@ import { ChartDataService } from '../../services/chart-data/chart-data.service';
   styleUrls: ['./total-ratings.component.scss']
 })
 export class TotalRatingsComponent {
-  data: Promise<string|number[][]>;
+  data: Promise<[string|number, string|number][]>;
   columns: string[];
   options: any;
 

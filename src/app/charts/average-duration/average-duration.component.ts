@@ -7,8 +7,8 @@ import { ChartDataService } from 'src/app/services/chart-data/chart-data.service
   styleUrls: ['./average-duration.component.scss']
 })
 export class AverageDurationComponent   {
-  tvShowData: string|number[][];
-  movieData: string|number[][];
+  tvShowData: [string|number, string|number][];
+  movieData: [string|number, string|number][];
   columns: string[];
   tvShowOptions: any;
   movieOptions: any;

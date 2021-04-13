@@ -1,0 +1,19 @@
+<table>
+    <tr>
+        <th *ngFor="let header of headers">
+            {{ header }}
+        </th>
+    </tr>
+    <tr *ngFor="let datum of data | slice: (page-1) * pageSize : page * pageSize">
+        <td *ngFor="let value of datum">
+            {{ value }}
+        </td>
+    </tr>
+</table>
+<ngb-pagination
+  [(page)]="page"
+  [pageSize]="pageSize"
+  [collectionSize]="data.length"
+  [maxSize]="5"
+  [rotate]="true"
+  [boundaryLinks]="true"></ngb-pagination>

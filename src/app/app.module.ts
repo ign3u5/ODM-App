@@ -11,6 +11,9 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FilterRatingComponent } from './charts/filter-rating/filter-rating.component';
 import { YearlyTotalComponent } from './charts/yearly-total/yearly-total.component';
 import { AverageDurationComponent } from './charts/average-duration/average-duration.component';
+import { TestChartComponent } from './charts/test-chart/test-chart.component';
+import { TableComponent } from './elements/table/table.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,15 @@ import { AverageDurationComponent } from './charts/average-duration/average-dura
     FilterRatingComponent,
     YearlyTotalComponent,
     AverageDurationComponent,
+    TestChartComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

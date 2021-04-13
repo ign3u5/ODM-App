@@ -8,8 +8,8 @@ import { ChartDataService } from 'src/app/services/chart-data/chart-data.service
   styleUrls: ['./yearly-total.component.scss']
 })
 export class YearlyTotalComponent{
-  tvShowData: string|number[][];
-  movieData: string|number[][];
+  tvShowData: [string|number, string|number][];
+  movieData: [string|number, string|number][];
   columns: string[];
   options: any;
 
@@ -28,10 +28,10 @@ export class YearlyTotalComponent{
     this.options = {
       colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
       hAxis: {
-        title: `Rating`,
+        title: `Release year`,
       },
       vAxis: {
-        title: `Number of movies`,
+        title: `Number of shows`,
       },
       legend: 'none',
     };
