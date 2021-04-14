@@ -3,9 +3,10 @@ import { HttpParams } from '@angular/common/http';
 export class ChartDataRequest {
     requestParams: HttpParams;
 
-    constructor(private ChartName: string) {
-        this.requestParams = new HttpParams();
-        this.requestParams.append('ChartName', ChartName);
+    constructor(ChartName: string) {
+        let httpParams = new HttpParams();
+        httpParams = httpParams.append('ChartName', ChartName);
+        this.requestParams = httpParams;
     }
 }
 

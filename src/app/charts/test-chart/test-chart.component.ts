@@ -1,116 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartSelectionChangedEvent } from 'angular-google-charts';
+import { forkJoin } from 'rxjs';
 import { ChartDataService } from 'src/app/services/chart-data/chart-data.service';
+import { ChartDataRequestBuilder } from 'src/app/services/models/ChartDataRequest';
 
 @Component({
   selector: 'app-test-chart',
   templateUrl: './test-chart.component.html',
   styleUrls: ['./test-chart.component.scss']
 })
-export class TestChartComponent implements OnInit {
-  ratingData: [string|number, string|number][];
-  showType: ShowType;
-  currentFilter: string;
-  showRatingData: boolean;
-  showTableData: boolean;
-
-  tableData: string[];
-
+export class TestChartComponent {
+  outputData: [number, number, number][];
+  columns: string[];
+// TODO: Make this work
   constructor(private chartData: ChartDataService) {
-    this.showRatingData = false;
-    this.showTableData = false;
-    this.showType = ShowType.All;
-    this.chartData.getChartData(`TotalRatings`).subscribe({
-      next: data => {
-        this.ratingData = data;
-        this.showRatingData = true;
-      }
-    });
-   }
+    this.columns = [`Year`, `Released Year`, `Added Year`]
+    this.outputData = new Array<[number, number, number]>();
+    const releaseYearRequest = (new ChartDataRequestBuilder()).initialise('NumberOfShowsForReleaseYear').build();
+    const addedYearRequest = (new ChartDataRequestBuilder()).initialise('NumberOfShowsForAddedYear').build();
 
-   onNoFilter(): void {
-      this.showTableData = false;
-      this.tableData = null;
-      this.chartData.getChartData(`TotalRatings`).subscribe({
-        next: data => {
-          this.ratingData = data;
-          this.showRatingData = true;
+    forkJoin([this.chartData.getChart(releaseYearRequest), this.chartData.getChart(addedYearRequest)]).subscribe(responseList => {
+      for (let i = 1925; i < 2021; i++)
+      {
+        let releasedValue = 0;
+        let addedValue = 0;
+
+        responseList[0].StringNumber.forEach(datum => {
+          if (i == parseInt(datum[0]))
+          {
+            releasedValue = datum[1];
+          }
+        });
+
+        responseList[1].StringNumber.forEach(datum => {
+          if (i == parseInt(datum[0])) {
+            addedValue = datum[1];
+          }
+        });
+
+        if (addedValue == 0 && releasedValue == 0)
+        {
+          continue;
         }
-      });
-   }
 
-  onJustMovies(): void {
-    this.showType = ShowType.Movie;
-    this.showRatingData = false;
-    this.chartData.getChartDataWhere(`TotalRatingsByShowType`, `Movie`).subscribe({
-      next: data => {
-        this.ratingData = data;
-        this.showRatingData = true;
+        this.outputData.push([i, releasedValue, addedValue]);
       }
-    });
-    if (this.tableData && this.currentFilter) {
-      this.getShowsOfType(`Movie`);
-    }
-  }
 
-  onJustTvShows(): void {
-    this.showType = ShowType.TvShow;
-    this.showRatingData = false;
-    this.chartData.getChartDataWhere(`TotalRatingsByShowType`, `TV Show`).subscribe({
-      next: data => {
-        this.ratingData = data;
-        this.showRatingData = true;
-      }
-    });
-    if (this.tableData && this.currentFilter) {
-      this.getShowsOfType(`TV Show`);
-    }
-  }
-
-  onSelect(event: ChartSelectionChangedEvent): void {
-    console.log(JSON.stringify(this.ratingData[event.selection[0].row]));
-    this.currentFilter = this.ratingData[event.selection[0].row][0].toString();
-    switch (this.showType)
-    {
-      case ShowType.All:
-        this.getAllShows();
-        break;
-      case ShowType.Movie:
-        this.getShowsOfType(`Movie`);
-        break;
-      case ShowType.TvShow:
-        this.getShowsOfType(`TV Show`);
-        break;
-    }
-  }
-
-  private getAllShows(): void {
-    this.showTableData = false;
-    this.chartData.getChartDataWhereString(`ShowByRating`, this.currentFilter).subscribe({
-      next: data => {
-        this.tableData = data;
-        this.showTableData = true;
-      }
+      console.log(JSON.stringify(this.outputData));
     });
   }
-
-  private getShowsOfType(showType: string): void {
-    this.showTableData = false;
-    this.chartData.getChartDataWhereAndString(`ShowByRatingAndType`, this.currentFilter, showType).subscribe({
-      next: data => {
-        this.tableData = data;
-        this.showTableData = true;
-      }
-    });
-  }
-
-  ngOnInit(): void {
-  }
-
-}
-
-enum ShowType {
-  TvShow,
-  Movie,
-  All
 }
