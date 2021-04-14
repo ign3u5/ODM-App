@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ChartDataResponse } from '../models/ChartDataResponse';
+import { ChartDataRequest, ChartDataRequestBuilder } from '../models/ChartDataRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,12 @@ export class ChartDataService {
 
   constructor(private client: HttpClient) { }
 
-  getChart(chartName: string): Observable<ChartDataResponse> {
+  getChart(request: ChartDataRequest): Observable<ChartDataResponse> {
     return this.client
     .get(`${this.baseAddress}Chart.php`,
     {
       observe: 'response',
-      params: this.setChartNameParam(chartName),
+      params: request.requestParams,
     })
     .pipe(
       map((response: any) => {

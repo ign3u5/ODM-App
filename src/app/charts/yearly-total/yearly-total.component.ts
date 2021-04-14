@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ChartDataService } from 'src/app/services/chart-data/chart-data.service';
+import { GoogleChartsOptions } from '../models/google-charts-options';
 
 @Component({
   selector: 'app-yearly-total',
@@ -11,7 +12,8 @@ export class YearlyTotalComponent{
   tvShowData: [string|number, string|number][];
   movieData: [string|number, string|number][];
   columns: string[];
-  options: any;
+  tvShowOptions: GoogleChartsOptions;
+  movieOptions: GoogleChartsOptions;
 
   constructor(private chartData: ChartDataService) { 
     this.columns = [`Description`, `Total`];
@@ -25,8 +27,21 @@ export class YearlyTotalComponent{
         this.movieData = d;
       }
     );
-    this.options = {
+    this.tvShowOptions = {
+      title: 'Total TV Shows Released by Year',
       colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+      hAxis: {
+        title: `Release year`,
+      },
+      vAxis: {
+        title: `Number of shows`,
+      },
+      legend: 'none',
+    };
+
+    this.movieOptions = {
+      title: 'Total Movies Released by Year',
+      colors: ['green'],
       hAxis: {
         title: `Release year`,
       },
