@@ -12,14 +12,15 @@ import { ChartDataRequestBuilder } from 'src/app/services/models/ChartDataReques
 export class TestChartComponent {
   outputData: [number, number, number][];
   columns: string[];
-// TODO: Make this work
+  
   constructor(private chartData: ChartDataService) {
     this.columns = [`Year`, `Released Year`, `Added Year`]
-    this.outputData = new Array<[number, number, number]>();
+
     const releaseYearRequest = (new ChartDataRequestBuilder()).initialise('NumberOfShowsForReleaseYear').build();
     const addedYearRequest = (new ChartDataRequestBuilder()).initialise('NumberOfShowsForAddedYear').build();
 
     forkJoin([this.chartData.getChart(releaseYearRequest), this.chartData.getChart(addedYearRequest)]).subscribe(responseList => {
+      this.outputData = new Array<[number, number, number]>();
       for (let i = 1925; i < 2021; i++)
       {
         let releasedValue = 0;
