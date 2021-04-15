@@ -16,6 +16,8 @@ import { TableComponent } from './elements/table/table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddedReleasedYearComponent } from './charts/added-released-year/added-released-year.component';
 import { PopularCastComponent } from './charts/popular-cast/popular-cast.component';
+import { PopularCountriesComponent } from './charts/popular-countries/popular-countries.component';
+import { MovieCountriesComponent } from './charts/movie-countries/movie-countries.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { PopularCastComponent } from './charts/popular-cast/popular-cast.compone
     TableComponent,
     AddedReleasedYearComponent,
     PopularCastComponent,
+    PopularCountriesComponent,
+    MovieCountriesComponent,
   ],
   imports: [
     BrowserModule,

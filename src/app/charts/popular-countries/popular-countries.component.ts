@@ -4,11 +4,11 @@ import { ChartDataRequestBuilder } from 'src/app/services/models/ChartDataReques
 import { GoogleChartsOptions } from '../models/google-charts-options';
 
 @Component({
-  selector: 'app-popular-cast',
-  templateUrl: './popular-cast.component.html',
-  styleUrls: ['./popular-cast.component.scss']
+  selector: 'app-popular-countries',
+  templateUrl: './popular-countries.component.html',
+  styleUrls: ['./popular-countries.component.scss']
 })
-export class PopularCastComponent implements OnInit {
+export class PopularCountriesComponent implements OnInit {
 
   outputData: [string, number][];
   options: GoogleChartsOptions;
@@ -17,7 +17,7 @@ export class PopularCastComponent implements OnInit {
     this.options = {
       title: 'Top Actors by Total Number of Appearances'
     }
-    let chartRequest = (new ChartDataRequestBuilder()).initialise('TopActors').addLimitConstraint('10').build();
+    let chartRequest = (new ChartDataRequestBuilder()).initialise('TopCountries').addLimitConstraint('10').build();
     chartData.getChart(chartRequest).subscribe(d => {
       this.outputData = d.StringNumber;
     });
