@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartSelectionChangedEvent } from 'angular-google-charts';
 import { forkJoin } from 'rxjs';
 import { ChartDataService } from 'src/app/services/chart-data/chart-data.service';
 import { ChartDataRequestBuilder } from 'src/app/services/models/ChartDataRequest';
 import { GoogleChartsOptions } from '../models/google-charts-options';
 
 @Component({
-  selector: 'app-test-chart',
-  templateUrl: './test-chart.component.html',
-  styleUrls: ['./test-chart.component.scss']
+  selector: 'app-added-released-year',
+  templateUrl: './added-released-year.component.html',
+  styleUrls: ['./added-released-year.component.scss']
 })
-export class TestChartComponent {
+export class AddedReleasedYearComponent {
+
   outputData: [number, number, number][];
   columns: string[];
   options: GoogleChartsOptions;
 
-  constructor(private chartData: ChartDataService) {
+  constructor(private chartData: ChartDataService) { 
     this.columns = [`Year`, `Released Year`, `Added Year`]
     this.options = {
       title: 'A snippet of the number of shows release and added each year',

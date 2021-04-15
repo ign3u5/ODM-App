@@ -10,4 +10,5 @@ export interface GoogleChartsOptions {
 
 export interface GoogleChartsOptionsAxis {
     title?: string;
+    format?: string;
 }

@@ -4,9 +4,12 @@ export class ChartDataRequest {
     requestParams: HttpParams;
 
     constructor(ChartName: string) {
-        let httpParams = new HttpParams();
-        httpParams = httpParams.append('ChartName', ChartName);
-        this.requestParams = httpParams;
+        this.requestParams = new HttpParams();
+        this.appendParams('ChartName', ChartName);
+    }
+
+    appendParams(key: string, value: string): void {
+        this.requestParams  = this.requestParams.append(key, value);
     }
 }
 
@@ -22,17 +25,17 @@ export class ChartDataRequestBuilder {
 
     addWhereConstraint(constraint: string): ChartDataRequestBuilder {
         if (this.whereConstraintCounter == 0) {
-            this.chartDataRequest.requestParams.append(`WhereConstraint`, constraint);
+            this.chartDataRequest.appendParams(`WhereConstraint`, constraint);
         }
         if (this.whereConstraintCounter == 1) {
-            this.chartDataRequest.requestParams.append(`AndConstraint`, constraint);
+            this.chartDataRequest.appendParams(`AndConstraint`, constraint);
         }
         this.whereConstraintCounter++;
         return this;
     }
 
     addLimitConstraint(constraint: string): ChartDataRequestBuilder {
-        this.chartDataRequest.requestParams.append(`Limit`, constraint);
+        this.chartDataRequest.appendParams(`Limit`, constraint);
         return this;
     }
 

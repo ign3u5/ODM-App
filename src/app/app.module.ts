@@ -14,6 +14,8 @@ import { AverageDurationComponent } from './charts/average-duration/average-dura
 import { TestChartComponent } from './charts/test-chart/test-chart.component';
 import { TableComponent } from './elements/table/table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddedReleasedYearComponent } from './charts/added-released-year/added-released-year.component';
+import { PopularCastComponent } from './charts/popular-cast/popular-cast.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AverageDurationComponent,
     TestChartComponent,
     TableComponent,
+    AddedReleasedYearComponent,
+    PopularCastComponent,
   ],
   imports: [
     BrowserModule,
