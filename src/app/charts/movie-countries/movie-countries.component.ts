@@ -17,11 +17,11 @@ import { CountryCodes } from '../models/country-code';
   styleUrls: ['./movie-countries.component.scss']
 })
 export class MovieCountriesComponent {
-  private chart: am4maps.MapChart;
+  chart: am4maps.MapChart;
   outputData: [string, number][];
 
   constructor(@Inject(PLATFORM_ID) private platformId, private zone: NgZone, private chartData: ChartDataService) {
-    let chartRequest = (new ChartDataRequestBuilder()).initialise('TopCountries').addLimitConstraint('10').build();
+    let chartRequest = (new ChartDataRequestBuilder()).initialise('TopCountries').addLimitConstraint('2000').build();
     chartData.getChart(chartRequest).subscribe(d => {
       this.outputData = d.StringNumber;
       this.generateChart();
