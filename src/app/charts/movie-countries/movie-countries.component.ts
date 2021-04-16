@@ -8,7 +8,7 @@ import * as am4maps from '@amCharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import { ChartDataService } from 'src/app/services/chart-data/chart-data.service';
-import { ChartDataRequestBuilder } from 'src/app/services/models/ChartDataRequest';
+import { ChartDataRequest, ChartDataRequestBuilder } from 'src/app/services/models/ChartDataRequest';
 import { CountryCodes } from '../models/country-code';
 
 @Component({
@@ -19,6 +19,7 @@ import { CountryCodes } from '../models/country-code';
 export class MovieCountriesComponent {
   chart: am4maps.MapChart;
   outputData: [string, number][];
+  countryMovies: string[];
 
   constructor(@Inject(PLATFORM_ID) private platformId, private zone: NgZone, private chartData: ChartDataService) {
     let chartRequest = (new ChartDataRequestBuilder()).initialise('TopCountries').addLimitConstraint('2000').build();
@@ -55,6 +56,17 @@ export class MovieCountriesComponent {
       });
       console.log(`Complete series data: ${seriesData}`);
       polygonSeries.data = seriesData;
+
+      polygonSeries.mapPolygons.template.events.on("hit", (env) => {
+        let movieCountriesRequest = (new ChartDataRequestBuilder())
+          .initialise('FilmsForCountry')
+          .addWhereConstraint(env.target.dataItem.dataContext['name'])
+          .build();
+        this.chartData.getChart(movieCountriesRequest).subscribe(d => {
+          this.countryMovies = 
+        });
+        console.log(`This is the event`, env.target.dataItem.dataContext);
+      }, this);
 
       polygonSeries.useGeodata = true;
       map.series.push(polygonSeries);
