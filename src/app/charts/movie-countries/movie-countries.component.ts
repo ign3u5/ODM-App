@@ -27,19 +27,10 @@ export class MovieCountriesComponent {
       this.outputData = d.StringNumber;
       this.generateChart();
     });
-  }
 
-  // Run the function only in the browser
-  browserOnly(f: () => void) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.zone.runOutsideAngular(() => {
-        f();
-      });
-    }
   }
 
   generateChart() {
-    this.browserOnly(() => {
       var map = am4core.create("chartdiv", am4maps.MapChart);
       map.geodata = am4geodata_worldLow;
       map.projection = new am4maps.projections.Miller();
@@ -57,16 +48,10 @@ export class MovieCountriesComponent {
       console.log(`Complete series data: ${seriesData}`);
       polygonSeries.data = seriesData;
 
+
       polygonSeries.mapPolygons.template.events.on("hit", (env) => {
-        let movieCountriesRequest = (new ChartDataRequestBuilder())
-          .initialise('FilmsForCountry')
-          .addWhereConstraint(env.target.dataItem.dataContext['name'])
-          .build();
-        this.chartData.getChart(movieCountriesRequest).subscribe(d => {
-          this.countryMovies = 
-        });
-        console.log(`This is the event`, env.target.dataItem.dataContext);
-      }, this);
+        this.changeMovieData(env.target.dataItem.dataContext['name']);
+      });
 
       polygonSeries.useGeodata = true;
       map.series.push(polygonSeries);
@@ -81,15 +66,18 @@ export class MovieCountriesComponent {
 
       var hoverExample = tooltips.states.create("hover");
       hoverExample.properties.fill = am4core.color('#248EC6');
-      this.chart = map; });
+      this.chart = map; 
+  }
+
+  changeMovieData(country: string): void {
+    this.chartData.getChartDataWhereString('FilmsForCountry', country).subscribe(d => {
+      this.countryMovies = d;
+    });
   }
 
   ngOnDestroy() {
-    // Clean up chart when the component is removed
-    this.browserOnly(() => {
-      if (this.chart) {
-        this.chart.dispose();
-      }
-    });
+    if (this.chart) {
+      this.chart.dispose();
+    }
   }
 }
