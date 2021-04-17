@@ -18,6 +18,7 @@ import { AddedReleasedYearComponent } from './charts/added-released-year/added-r
 import { PopularCastComponent } from './charts/popular-cast/popular-cast.component';
 import { PopularCountriesComponent } from './charts/popular-countries/popular-countries.component';
 import { MovieCountriesComponent } from './charts/movie-countries/movie-countries.component';
+import { TopDirectorsComponent } from './charts/top-directors/top-directors.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MovieCountriesComponent } from './charts/movie-countries/movie-countrie
     PopularCastComponent,
     PopularCountriesComponent,
     MovieCountriesComponent,
+    TopDirectorsComponent,
   ],
   imports: [
     BrowserModule,

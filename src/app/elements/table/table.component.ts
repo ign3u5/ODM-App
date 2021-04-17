@@ -5,7 +5,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit, OnChanges {
+export class TableComponent implements OnInit {
 
   @Input() data: any[][];
   @Input() headers: string[];
@@ -13,10 +13,6 @@ export class TableComponent implements OnInit, OnChanges {
   pageSize = 10;
 
   constructor() { }
-
-  ngOnChanges() : void {
-    console.log("A change occured");
-  }
 
   ngOnInit(): void {
   }
