@@ -26,7 +26,7 @@ export class TopDirectorsComponent implements OnInit {
   onSelect(event: ChartSelectionChangedEvent): void {
     this.chartData.getChartDataWhereString('FilmsByDirector', this.outputData[event.selection[0].row][0]).subscribe(d => {
       this.tableData = d;
-      console.log("On Select has happened");
+      console.log('On Select has happened');
     })
   }
 

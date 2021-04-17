@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddedReleasedYearComponent } from './charts/added-released-year/added-released-year.component';
+import { AdditionalFunctionalityComponent } from './charts/additional-functionality/additional-functionality.component';
 import { AverageDurationComponent } from './charts/average-duration/average-duration.component';
 import { FilterRatingComponent } from './charts/filter-rating/filter-rating.component';
 import { MovieCountriesComponent } from './charts/movie-countries/movie-countries.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'PopularCountries', component: PopularCountriesComponent },
   { path: 'MovieCountries', component: MovieCountriesComponent },
   { path: 'TopDirectors', component: TopDirectorsComponent},
+  { path: 'AdditionalFunctionality', component: AdditionalFunctionalityComponent},
   { path: 'Test', component: TestChartComponent },
 ];
 

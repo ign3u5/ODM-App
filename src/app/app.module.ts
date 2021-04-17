@@ -19,6 +19,7 @@ import { PopularCastComponent } from './charts/popular-cast/popular-cast.compone
 import { PopularCountriesComponent } from './charts/popular-countries/popular-countries.component';
 import { MovieCountriesComponent } from './charts/movie-countries/movie-countries.component';
 import { TopDirectorsComponent } from './charts/top-directors/top-directors.component';
+import { AdditionalFunctionalityComponent } from './charts/additional-functionality/additional-functionality.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { TopDirectorsComponent } from './charts/top-directors/top-directors.comp
     PopularCountriesComponent,
     MovieCountriesComponent,
     TopDirectorsComponent,
+    AdditionalFunctionalityComponent,
   ],
   imports: [
     BrowserModule,
