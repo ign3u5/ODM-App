@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataService } from 'src/app/services/chart-data/chart-data.service';
+import { ChartDataRequestBuilder } from 'src/app/services/models/ChartDataRequest';
 
 @Component({
   selector: 'app-average-duration',
@@ -13,7 +14,24 @@ export class AverageDurationComponent   {
   tvShowOptions: any;
   movieOptions: any;
 
+  averageTvShowDuration: string;
+  averageMovieDuration: string;
+
   constructor(private chartData: ChartDataService) { 
+    let averageTvShowDurationRequest = (new ChartDataRequestBuilder())
+    .initialise(`AverageDuration`).addWhereConstraint(`TV Show`).build();
+
+    let averageMovieDurationRequest = (new ChartDataRequestBuilder())
+    .initialise(`AverageDuration`).addWhereConstraint(`Movie`).build();
+
+    this.chartData.getChart(averageTvShowDurationRequest).subscribe(d => {
+      this.averageTvShowDuration = d.StringArray[0];
+    });
+
+    this.chartData.getChart(averageMovieDurationRequest).subscribe(d => {
+      this.averageMovieDuration = d.StringArray[0];
+    });
+
     this.columns = [`Description`, `Total`];
     this.chartData.getChartDataWhere(`DurationFrequency`, `TV Show`).subscribe(
       d => {
