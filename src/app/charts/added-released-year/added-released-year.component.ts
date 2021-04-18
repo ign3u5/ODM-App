@@ -18,7 +18,7 @@ export class AddedReleasedYearComponent {
   constructor(private chartData: ChartDataService) { 
     this.columns = [`Year`, `Released Year`, `Added Year`]
     this.options = {
-      title: 'A snippet of the number of shows release and added each year',
+      title: 'A snippet of the number of shows released and added each year',
       vAxis: {
         title: 'Number of shows',
         format: 'decimal',
