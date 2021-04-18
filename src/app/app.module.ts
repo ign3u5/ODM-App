@@ -11,7 +11,6 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FilterRatingComponent } from './charts/filter-rating/filter-rating.component';
 import { YearlyTotalComponent } from './charts/yearly-total/yearly-total.component';
 import { AverageDurationComponent } from './charts/average-duration/average-duration.component';
-import { TestChartComponent } from './charts/test-chart/test-chart.component';
 import { TableComponent } from './elements/table/table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddedReleasedYearComponent } from './charts/added-released-year/added-released-year.component';
@@ -32,7 +31,6 @@ import { ShowGenresComponent } from './charts/show-genres/show-genres.component'
     FilterRatingComponent,
     YearlyTotalComponent,
     AverageDurationComponent,
-    TestChartComponent,
     TableComponent,
     AddedReleasedYearComponent,
     PopularCastComponent,

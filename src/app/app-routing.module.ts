@@ -8,7 +8,6 @@ import { MovieCountriesComponent } from './charts/movie-countries/movie-countrie
 import { PopularCastComponent } from './charts/popular-cast/popular-cast.component';
 import { PopularCountriesComponent } from './charts/popular-countries/popular-countries.component';
 import { ShowGenresComponent } from './charts/show-genres/show-genres.component';
-import { TestChartComponent } from './charts/test-chart/test-chart.component';
 import { TopDirectorsComponent } from './charts/top-directors/top-directors.component';
 import { TotalHoursComponent } from './charts/total-hours/total-hours.component';
 import { TotalRatingsComponent } from './charts/total-ratings/total-ratings.component';
@@ -29,7 +28,6 @@ const routes: Routes = [
   { path: 'MostPopularYear', component: MostPopularYearComponent},
   { path: 'TotalHours', component: TotalHoursComponent},
   { path: 'ShowGenres', component: ShowGenresComponent},
-  { path: 'Test', component: TestChartComponent },
 ];
 
 @NgModule({
