@@ -9,6 +9,7 @@ import { PopularCastComponent } from './charts/popular-cast/popular-cast.compone
 import { PopularCountriesComponent } from './charts/popular-countries/popular-countries.component';
 import { TestChartComponent } from './charts/test-chart/test-chart.component';
 import { TopDirectorsComponent } from './charts/top-directors/top-directors.component';
+import { TotalHoursComponent } from './charts/total-hours/total-hours.component';
 import { TotalRatingsComponent } from './charts/total-ratings/total-ratings.component';
 import { TotalShowTypeComponent } from './charts/total-show-type/total-show-type.component';
 import { YearlyTotalComponent } from './charts/yearly-total/yearly-total.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'MovieCountries', component: MovieCountriesComponent },
   { path: 'TopDirectors', component: TopDirectorsComponent},
   { path: 'MostPopularYear', component: MostPopularYearComponent},
+  { path: 'TotalHours', component: TotalHoursComponent},
   { path: 'Test', component: TestChartComponent },
 ];
 

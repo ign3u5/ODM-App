@@ -10,6 +10,6 @@ export class ChartDataResponse {
     }
 
     get StringArray(): string[] {
-        return this.responseData;
+        return this.responseData.map(d => d[0]);
     }
 }
