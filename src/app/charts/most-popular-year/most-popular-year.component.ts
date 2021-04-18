@@ -3,11 +3,11 @@ import { ChartDataService } from 'src/app/services/chart-data/chart-data.service
 import { ChartDataRequestBuilder } from 'src/app/services/models/ChartDataRequest';
 
 @Component({
-  selector: 'app-additional-functionality',
-  templateUrl: './additional-functionality.component.html',
-  styleUrls: ['./additional-functionality.component.scss']
+  selector: 'app-most-popular-year',
+  templateUrl: './most-popular-year.component.html',
+  styleUrls: ['./most-popular-year.component.scss']
 })
-export class AdditionalFunctionalityComponent implements OnInit {
+export class MostPopularYearComponent implements OnInit {
 
   outputData: string;
   popularReleaseYear: string[];
@@ -23,7 +23,6 @@ export class AdditionalFunctionalityComponent implements OnInit {
       })
     });
   }
-
   ngOnInit(): void {
   }
 
