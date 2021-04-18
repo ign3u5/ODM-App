@@ -27,6 +27,7 @@ export class AverageDurationComponent   {
     );
     this.tvShowOptions = {
       colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+      title: 'Frequency of Particular Durations of TV Shows',
       hAxis: {
         title: `Duration (seasons)`,
       },
@@ -37,6 +38,7 @@ export class AverageDurationComponent   {
     };
     this.movieOptions = {
         colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+        title: 'Frequency of Parituclar Duration of Movies',
         hAxis: {
           title: `Duration (mins)`,
         },
