@@ -9,13 +9,13 @@ import { ChartDataRequest, ChartDataRequestBuilder } from '../models/ChartDataRe
   providedIn: 'root'
 })
 export class ChartDataService {
-  private baseAddress = `http://localhost:8000/`;
+  private baseAddress = `https://api.odm-ws311471.remote.ac/`;
 
   constructor(private client: HttpClient) { }
 
   getChart(request: ChartDataRequest): Observable<ChartDataResponse> {
     return this.client
-    .get(`${this.baseAddress}Chart.php`,
+    .get(`${this.baseAddress}chart.php`,
     {
       observe: 'response',
       params: request.requestParams,
@@ -31,7 +31,7 @@ export class ChartDataService {
 
   getChartData(chartName: string): Observable<[string|number, string|number][]> {
     return this.client
-    .get(`${this.baseAddress}Chart.php`,
+    .get(`${this.baseAddress}chart.php`,
     {
       observe: 'response',
       params: this.setChartNameParam(chartName),
@@ -51,7 +51,7 @@ export class ChartDataService {
 
   getChartDataString(chartName: string): Observable<[string|number, string|number][]> {
     return this.client
-    .get(`${this.baseAddress}Chart.php`,
+    .get(`${this.baseAddress}chart.php`,
     {
       observe: 'response',
       params: this.setChartNameParam(chartName),
@@ -71,7 +71,7 @@ export class ChartDataService {
 
   getChartDataWhere(chartName: string, where: string): Observable<[string|number, string|number][]> {
     return this.client
-    .get(`${this.baseAddress}Chart.php`,
+    .get(`${this.baseAddress}chart.php`,
     {
       observe: 'response',
       params: this.setChartNameParam(chartName).append('WhereConstraint', where),
@@ -91,7 +91,7 @@ export class ChartDataService {
 
   getChartDataWhereString(chartName: string, where: string): Observable<string[]> {
     return this.client
-    .get(`${this.baseAddress}Chart.php`,
+    .get(`${this.baseAddress}chart.php`,
     {
       observe: 'response',
       params: this.setChartNameParam(chartName).append('WhereConstraint', where),
@@ -111,7 +111,7 @@ export class ChartDataService {
 
   getChartDataWhereAndString(chartName: string, where: string, and: string): Observable<string[]> {
     return this.client
-    .get(`${this.baseAddress}Chart.php`,
+    .get(`${this.baseAddress}chart.php`,
     {
       observe: 'response',
       params: this.setChartNameParam(chartName).append('WhereConstraint', where).append('AndConstraint', and),
@@ -131,7 +131,7 @@ export class ChartDataService {
 
   getChartDataLimit(chartName: string): Observable<[string|number, string|number][]> {
     return this.client
-    .get(`${this.baseAddress}Chart.php`,
+    .get(`${this.baseAddress}chart.php`,
     {
       observe: 'response',
       params: this.setChartNameParam(chartName),
@@ -151,7 +151,7 @@ export class ChartDataService {
 
   getChartDataWhereLimit(chartName: string, where: string, limit: string): Observable<[string|number, string|number][]> {
     return this.client
-    .get(`${this.baseAddress}Chart.php`,
+    .get(`${this.baseAddress}chart.php`,
     {
       observe: 'response',
       params: this.setChartNameParam(chartName).append('WhereConstraint', where).append('Limit', limit),
