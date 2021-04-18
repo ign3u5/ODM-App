@@ -31,10 +31,10 @@ export class YearlyTotalComponent{
       title: 'Total TV Shows Released by Year',
       colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
       hAxis: {
-        title: `Release year`,
+        title: `Number of TV Shows`,
       },
       vAxis: {
-        title: `Number of shows`,
+        title: `Release Year`,
       },
       legend: 'none',
     };
@@ -43,10 +43,10 @@ export class YearlyTotalComponent{
       title: 'Total Movies Released by Year',
       colors: ['green'],
       hAxis: {
-        title: `Release year`,
+        title: `Number of Movies`,
       },
       vAxis: {
-        title: `Number of shows`,
+        title: `Release Year`,
       },
       legend: 'none',
     };
