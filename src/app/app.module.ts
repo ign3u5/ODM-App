@@ -21,6 +21,7 @@ import { MovieCountriesComponent } from './charts/movie-countries/movie-countrie
 import { TopDirectorsComponent } from './charts/top-directors/top-directors.component';
 import { MostPopularYearComponent } from './charts/most-popular-year/most-popular-year.component';
 import { TotalHoursComponent } from './charts/total-hours/total-hours.component';
+import { ShowGenresComponent } from './charts/show-genres/show-genres.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { TotalHoursComponent } from './charts/total-hours/total-hours.component'
     TopDirectorsComponent,
     MostPopularYearComponent,
     TotalHoursComponent,
+    ShowGenresComponent,
   ],
   imports: [
     BrowserModule,
