@@ -1,3 +1,4 @@
 <h1>Total hours available</h1>
 <h3>The total number of hours available to watch is {{ totalHoursAvailable }}</h3>
+<h6>Movies in order of duration</h6>
 <data-table *ngIf="topDurationMovies" [headers]="['Title', 'Description']" [data]="topDurationMovies"></data-table>

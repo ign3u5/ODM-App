@@ -15,7 +15,7 @@ export class PopularCountriesComponent implements OnInit {
 
   constructor(chartData: ChartDataService) {
     this.options = {
-      title: 'Top Actors by Total Number of Appearances'
+      title: 'Top Countries by Total Number of Appearances'
     }
     let chartRequest = (new ChartDataRequestBuilder()).initialise('TopCountries').addLimitConstraint('10').build();
     chartData.getChart(chartRequest).subscribe(d => {
