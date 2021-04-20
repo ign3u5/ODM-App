@@ -15,6 +15,7 @@ export class TotalRatingsComponent {
     this.columns = [`Description`, `Total`];
     this.data = this.chartData.getChartData(`TotalRatings`).toPromise();
     this.options = {
+      title: 'Number of Movies Classified by Ratings',
       colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
       hAxis: {
         title: `Rating`,
